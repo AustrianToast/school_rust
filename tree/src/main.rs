@@ -3,24 +3,29 @@ struct Tree {
 }
 
 impl Tree {
-    fn cut_down(&mut self) {
+    fn cut_down(&mut self) -> usize {
         self.height = 20;
+        self.height
     }
 
-    fn cut(&mut self) {
+    fn cut(&mut self) -> usize {
         if self.height > 50 {
-            self.height = self.height - 50;
+            self.height -= 50;
+            self.height
         } else {
-            println!("not tall enough")
+            println!("not tall enough");
+            self.height
         }
     }
 
-    fn add_height(&mut self, extra_height: usize) {
-        self.height = self.height + extra_height;
+    fn add_height(&mut self, extra_height: usize) -> usize {
+        self.height += extra_height;
+        self.height
     }
 
-    fn double_height(&mut self) {
-        self.height = self.height * 2;
+    fn double_height(&mut self) -> usize {
+        self.height *= 2;
+        self.height
     }
 }
 
@@ -29,19 +34,14 @@ fn main() {
         height: 200,
     };
     println!("{}", tree.height);
+    
+    println!("{}", tree.cut_down());
 
-    tree.cut_down();
-    println!("{}", tree.height);
+    println!("{}", tree.cut());
 
-    tree.cut();
-    println!("{}", tree.height);
+    println!("{}", tree.add_height(100));
 
-    tree.add_height(100);
-    println!("{}", tree.height);
+    println!("{}", tree.cut());
 
-    tree.cut();
-    println!("{}", tree.height);
-
-    tree.double_height();
-    println!("{}", tree.height);
+    println!("{}", tree.double_height());
 }
